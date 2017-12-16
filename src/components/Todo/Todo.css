@@ -6,7 +6,7 @@
   margin: 8px 0;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0px 2px 4px rgba(44, 62, 80, 0.15);
+  box-shadow: 0px 2px 2px rgba(255, 62, 80, 0.15);
   width: 100%;
   transition: all .2s;
   opacity: 1;
@@ -14,7 +14,7 @@
 }
 
 .completed {
-  box-shadow: 0px 2px 4px rgba(255, 0, 0, 0.15);
+  box-shadow: 0px 2px 2px rgba(62, 255, 80, 0.15);
 }
 
 .todo-title {
@@ -45,7 +45,7 @@
   background-image: url(../../svg/done.svg);
 }
 
-.done,
+.btn-done,
 .toggle-todo:hover {
   background-color: #26B999;
   background-image: url(../../svg/done_hover.svg);
