@@ -26,7 +26,11 @@ const todos = (state = initialState, action) => {
           {...todo, done: !todo.done} :
           todo
       )
-      
+
+    case ActionTypes.FETCH_TODO:
+      const URL = "https://jsonplaceholder.typicode.com/posts"
+      return [...state, URL]
+
     default:
       return state
   }

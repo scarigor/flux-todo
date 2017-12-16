@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Todo from '../Todo/Todo'
 import './TodoContent.css'
 
@@ -11,7 +11,8 @@ const TodoContent = props => {
               text={todo.text}
               isDone={todo.done}
               onToggle={props.actions.onToggleTodo}
-              onDelete={props.actions.onDeleteTodo} />
+              onDelete={props.actions.onDeleteTodo}
+            />
   }
 
   return (

@@ -12,7 +12,9 @@ class TodoHeader extends Component {
   handleChange = (e) => this.setState({ title: e.target.value })
 
   handleClick = () => {
-    this.state.title ? this.props.onAddTodo(this.state.title) : null
+    if (this.state.title) {
+      this.props.onAddTodo(this.state.title)
+    }
     this.clearInput()
   }
 
