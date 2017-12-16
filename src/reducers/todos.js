@@ -26,9 +26,9 @@ const todos = (state = initialState, action) => {
           {...todo, done: !todo.done} :
           todo
       )
-
-      default:
-        return state
+      
+    default:
+      return state
   }
 }
 
