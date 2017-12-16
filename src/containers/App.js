@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import Todo from '../Todo/Todo'
-import './TodoApp.css'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as Actions from '../actions/Actions.js'
+import Todo from '../components/Todo/Todo'
+
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -8,35 +12,19 @@ class App extends Component {
     this.state = {
       title: ''
     }
-
-    this.updateView = this.updateView.bind(this)
   }
 
-  updateView() {
-    this.setState({})
+  addTodo = (text) => {
+    this.props.actions.onAddTodo(text)
   }
 
-  componentDidMount() {
-    this.props.store.on('change', this.updateView)
+  deleteTodo = (id) => {
+    this.props.actions.onDeleteTodo(id)
   }
 
-  componentWillUnmount() {
-    this.props.store.off('change', this.updateView)
+  toggleTodo = (id) => {
+    this.props.actions.onToggleTodo(id)
   }
-
-
-  addTodo = (title) => {
-    this.props.actions.onAddTodo(title)
-  }
-
-  toggleTodo = (title) => {
-    this.props.actions.onToggleTodo(title)
-  }
-
-  deleteTodo = (title) => {
-    this.props.actions.onDeleteTodo(title)
-  }
-
 
   handleInput = (e) => {
     this.setState({
@@ -61,7 +49,8 @@ class App extends Component {
   renderTodo(todo) {
     return <Todo
               key={todo.id}
-              title={todo.title}
+              id={todo.id}
+              text={todo.text}
               isDone={todo.done}
               onToggle={this.toggleTodo}
               onDelete={this.deleteTodo}/>
@@ -69,8 +58,8 @@ class App extends Component {
 
 
   render() {
-    const store = this.props.store,
-          todos = store.todos
+    const todos = this.props.todos
+    console.log(this.props)
 
     return (
       <div className="todo-app">
@@ -108,4 +97,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  todos: state.todos
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(Actions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

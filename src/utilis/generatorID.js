@@ -1,8 +1,8 @@
-let _counter = 1;
+let counter = 1;
 
 const Counter = {
   increment() {
-    return String(_counter++);
+    return String(counter++);
   },
 };
 
