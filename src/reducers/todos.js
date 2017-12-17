@@ -24,13 +24,10 @@ const todos = (state = initialState, action) => {
           todo
       )
 
-    // case ActionTypes.FETCH_SUCCESS:
-    //   console.log(action.text)
-    //   return [...state, action.text]
-
     default:
       return state
   }
 }
+
 
 export default todos

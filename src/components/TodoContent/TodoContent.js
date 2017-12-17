@@ -3,7 +3,6 @@ import Todo from '../Todo/Todo'
 import './TodoContent.css'
 
 const TodoContent = props => {
-
   const renderTodo = todo => {
     return <Todo
               key={todo.id}
