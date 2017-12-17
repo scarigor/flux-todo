@@ -1,21 +1,22 @@
+
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import App from './containers/App'
+import reducer from './reducers'
 
 import './reset.css'
+import './index.css'
 
-import TodoApp from './components/TodoApp/TodoApp'
+const store = createStore(reducer)
 
-import Dispatcher from './flux/Dispatcher'
-import Store from './flux/Store'
-import Actions from './flux/Actions'
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
 
-// Model
-const dispatcher = new Dispatcher()
-const store = new Store(dispatcher)
-const actions = new Actions(dispatcher)
-
-// View
-const root = document.getElementById('root')
-ReactDOM.render(<TodoApp store={store} actions={actions}/>, root)
-
-window.d = dispatcher
+window.store = store

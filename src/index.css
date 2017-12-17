@@ -1,0 +1,10 @@
+body {
+  background: #AEAEAE;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+body, input, button {
+  font-family: 'Roboto', sans-serif;
+}
