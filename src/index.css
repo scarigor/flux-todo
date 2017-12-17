@@ -1,7 +1,8 @@
 body {
-  background: #edf0f1;
+  background: #AEAEAE;
   display: flex;
   justify-content: center;
+  padding: 20px 0;
 }
 
 body, input, button {

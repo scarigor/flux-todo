@@ -1,5 +1,5 @@
 .todo-content {
-  padding: 20px;
+  padding: 10px 20px;
   position: relative;
   min-height: 231px;
   display: flex;
@@ -16,11 +16,11 @@ hr {
   width: 80%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.09);
+  margin: 10px 0 10px;
 }
 
 .todos {
   width: 100%;
-  margin: 5px 0;
 }
 
 .todos:before {

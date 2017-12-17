@@ -4,22 +4,22 @@ import './TodoHeader.css'
 class TodoHeader extends Component {
   constructor(props) {
     super(props)
-    this.state = { title: '' }
+    this.state = { text: '' }
   }
 
-  clearInput = () => this.setState({ title: '' })
+  clearInput = () => this.setState({ text: '' })
 
-  handleChange = (e) => this.setState({ title: e.target.value })
+  handleChange = (e) => this.setState({ text: e.target.value })
 
   handleClick = () => {
-    if (this.state.title) {
-      this.props.onAddTodo(this.state.title)
+    if (this.state.text) {
+      this.props.onAddTodo(this.state.text)
     }
     this.clearInput()
   }
 
   handleSubmit = (e) => {
-    const text = this.state.title,
+    const text = this.state.text,
           isEnter = e.which === 13
 
     if (text && isEnter) {
@@ -35,7 +35,8 @@ class TodoHeader extends Component {
           <input
             className="header-input"
             type="text"
-            value={this.state.title}
+            placeholder='What do you need to do?'
+            value={this.state.text}
             onChange={this.handleChange}
             onKeyPress={this.handleSubmit}
            />

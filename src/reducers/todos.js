@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/ActionTypes'
-import Counter from '../utilis/generatorID'
+import Counter from '../utilis/Counter'
 
 const initialState = []
 

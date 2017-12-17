@@ -6,9 +6,9 @@ const Todo = props => {
   const handleDelete = () => props.onDelete(props.id),
         handleToggle = () => props.onToggle(props.id)
 
-  const closeBtnClass = classNames('todo-btn', 'close-todo'),
-        doneBtnClass = classNames('todo-btn', 'toggle-todo', {'btn-done': props.isDone}),
-        todoItemClass = classNames('todo-item', {'completed': props.isDone})
+  const todoItemClass = classNames('todo-item', {'completed': props.isDone}),
+        closeBtnClass = classNames('todo-btn', 'close-todo'),
+        doneBtnClass = classNames('todo-btn', 'toggle-todo', {'btn-done': props.isDone})
 
   return (
     <li className={todoItemClass}>

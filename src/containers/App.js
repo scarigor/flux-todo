@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 })
 
-const App = ({todos, actions}) => (
+const App = ({ todos, actions }) => (
   <div className="todo-app">
     <TodoHeader onAddTodo={actions.onAddTodo} />
     <TodoContent todos={todos} actions={actions} />
