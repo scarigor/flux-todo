@@ -6,30 +6,27 @@ const initialState = []
 const todos = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-      return [
-        ...state,
-        {
-          id: Counter.increment(),
-          done: false,
-          text: action.text
-        }
-      ]
+      const todo = {
+        id: Counter.increment(),
+        done: false,
+        text: action.text
+      }
+
+      return [...state, todo]
 
     case ActionTypes.DEL_TODO:
-      return state.filter(todo =>
-        todo.id !== action.id
-      )
+      return state.filter(todo => todo.id !== action.id)
 
     case ActionTypes.TOGGLE_TODO:
       return state.map(todo =>
-        todo.id === action.id ?
+        (todo.id === action.id) ?
           {...todo, done: !todo.done} :
           todo
       )
 
-    case ActionTypes.FETCH_TODO:
-      const URL = "https://jsonplaceholder.typicode.com/posts"
-      return [...state, URL]
+    // case ActionTypes.FETCH_SUCCESS:
+    //   console.log(action.text)
+    //   return [...state, action.text]
 
     default:
       return state

@@ -17,19 +17,15 @@ const TodoContent = props => {
 
   return (
     <main className="todo-content">
-      <div className="todos uncompleted-todos">
-        <ul>
-          {props.todos.map(todo => !todo.done ? renderTodo(todo) : null)}
-        </ul>
-      </div>
+      <ul className="todos uncompleted-todos">
+        {props.todos.map(todo => !todo.done ? renderTodo(todo) : null).reverse()}
+      </ul>
 
       <hr/>
 
-      <div className="todos completed-todos">
-        <ul>
-          {props.todos.map(todo => todo.done ? renderTodo(todo) : null)}
-        </ul>
-      </div>
+      <ul className="todos completed-todos">
+        {props.todos.map(todo => todo.done ? renderTodo(todo) : null)}
+      </ul>
     </main>
   )
 }
