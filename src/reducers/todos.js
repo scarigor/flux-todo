@@ -1,7 +1,11 @@
 import ActionTypes from '../constants/ActionTypes'
 import Counter from '../utilis/Counter'
 
-const initialState = []
+const initialState = [{
+  id: Counter.increment(),
+  done: false,
+  text: 'action.text'
+}]
 
 const todos = (state = initialState, action) => {
   switch (action.type) {
@@ -28,6 +32,10 @@ const todos = (state = initialState, action) => {
       return state
   }
 }
+
+//selectors
+
+export const getAllTodos = state => state.todos
 
 
 export default todos
