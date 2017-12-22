@@ -1,11 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Route } from "react-router-dom";
 import * as Actions from '../actions/Actions.js'
-
-import LoginPage from '../components/pages/LoginPage'
-import HomePage from '../components/pages/HomePage'
+import TodoHeader from '../components/TodoHeader/TodoHeader'
+import TodoContent from '../components/TodoContent/TodoContent'
 import './App.css'
 
 const mapStateToProps = state => ({
@@ -17,9 +15,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const App = ({ todos, actions }) => (
-  <div>
-    <Route path='/' exact component={HomePage} />
-    <Route path='/login' exact component={LoginPage} />
+  console.log(props.todos)
+  <div className="todo-app">
+    <TodoHeader onAddTodo={actions.onAddTodo} />
+    <TodoContent todos={todos} actions={actions} />
   </div>
 )
 

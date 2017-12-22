@@ -1,21 +1,26 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { BrowserRouter, Route } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import reducer from './reducers'
 
 import App from './containers/App'
-import reducer from './reducers'
 
 import './reset.css'
 import './index.css'
+import 'semantic-ui-css/semantic.min.css';
+
 
 const store = createStore(reducer)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <Route component={App} />
+    </Provider>
+  </ BrowserRouter>,
   document.getElementById('root')
 )
 
