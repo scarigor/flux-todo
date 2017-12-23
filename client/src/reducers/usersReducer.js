@@ -2,13 +2,7 @@ import ActionTypes from '../constants/ActionTypes'
 
 const usersReducer = (state = {}, action) => {
   switch (action.type) {
-    case ActionTypes.USER_LOGIN_REQUEST:
-      return action.user
-
-    case ActionTypes.USER_LOGIN_SUCCESS:
-      return action.user
-
-    case ActionTypes.USER_LOGIN_ERROR:
+    case ActionTypes.USER_LOGGED_IN:
       return action.user
 
     default:
