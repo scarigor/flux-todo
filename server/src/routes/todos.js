@@ -1,12 +1,13 @@
 import express from 'express';
 import Todo from '../models/todo';
+import mongoose from 'mongoose';
 
 const router = express.Router()
 
 // Create todo
-router.post('/:id', (req, res) => {
+router.post('/addtodo', (req, res) => {
   const todo = new Todo({
-    _id: req.params.id,
+    _id: mongoose.Types.ObjectId(),
     text: req.body.text,
     done: false
   })
