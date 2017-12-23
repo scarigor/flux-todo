@@ -31,12 +31,12 @@ router.delete('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
   Todo.findById(req.params.id)
   .exec()
-  .then(todo => todo.done = !todo.done)
   .then(todo => {
-    todo ? res.status(200).json(todo) :
-           res.status(404).json({ error: 'Invalid id!' })
+    todo.done = !todo.done
+    todo.save()
+    .then(res.status(200).json(todo))
+    .catch(e => res.status(500).json({ error: e }))
   })
-  .catch(e => res.status(500).json({ error: e }))
 })
 
 // Get todo
