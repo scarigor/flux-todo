@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const App = ({ todos, actions }) => (
-  <div>
+  <div className='todo-app'>
     <Route path='/' exact component={HomePage} />
     <Route path='/login' exact component={LoginPage} />
   </div>

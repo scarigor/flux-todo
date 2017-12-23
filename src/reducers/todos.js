@@ -1,11 +1,23 @@
 import ActionTypes from '../constants/ActionTypes'
 import Counter from '../utilis/Counter'
 
-const initialState = [{
-  id: Counter.increment(),
-  done: false,
-  text: 'action.text'
-}]
+const initialState = [
+  {
+    id: Counter.increment(),
+    done: false,
+    text: 'Learn express server'
+  },
+  {
+    id: Counter.increment(),
+    done: false,
+    text: 'Finish my diploma'
+  },
+  {
+    id: Counter.increment(),
+    done: false,
+    text: 'Buy awesome car'
+  }
+]
 
 const todos = (state = initialState, action) => {
   switch (action.type) {

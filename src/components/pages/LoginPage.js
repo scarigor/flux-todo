@@ -1,8 +1,22 @@
-import React from 'react';
-const LoginPage = props => {
-  return (
-    <h1>Login page</h1>
-  )
+import React, { Component } from 'react';
+import LoginForm from '../Forms/LoginForm/LoginForm';
+
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  submit = (data) => {
+    console.log(data)
+  }
+
+  render() {
+    return (
+      <LoginForm submit={this.submit}/>
+    );
+  }
+
 }
 
-export default LoginPage
+export default LoginPage;

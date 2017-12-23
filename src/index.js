@@ -9,8 +9,8 @@ import reducer from './reducers'
 import App from './containers/App'
 
 import './reset.css'
-import './index.css'
 import 'semantic-ui-css/semantic.min.css';
+import './index.css'
 
 
 const store = createStore(reducer)
@@ -20,7 +20,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Route component={App} />
     </Provider>
-  </ BrowserRouter>,
+  </BrowserRouter>,
   document.getElementById('root')
 )
 

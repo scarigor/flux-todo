@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import './TodoHeader.css'
 
 class TodoHeader extends Component {
@@ -31,6 +32,7 @@ class TodoHeader extends Component {
   render() {
     return (
       <header className="todo-header">
+        <Link to='/login'>Login</Link>
         <div className="input-wrapper">
           <input
             className="header-input"
