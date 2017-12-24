@@ -1,6 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import { Route } from "react-router-dom";
 import LoginPage from '../components/pages/LoginPage'
 import HomePage from '../components/pages/HomePage'

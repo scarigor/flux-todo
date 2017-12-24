@@ -7,10 +7,6 @@ import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 
 
 class TodoContent extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount = () => this.onInit(this.props);
 
   onInit = props => props.fetchTodos()
@@ -33,7 +29,7 @@ class TodoContent extends React.Component {
           {this.props.todos.map(todo => !todo.done ? this.renderTodo(todo) : null).reverse()}
         </ul>
 
-        <hr/>
+        <hr className='separator'/>
 
         <ul className="todos completed-todos">
           {this.props.todos.map(todo => todo.done ? this.renderTodo(todo) : null).reverse()}
@@ -47,7 +43,7 @@ class TodoContent extends React.Component {
 function mapStateToProps(state) {
   return {
     todos: getAllTodos(state)
-  };
+  }
 }
 
 export default connect(mapStateToProps, { fetchTodos, removeTodo, toggleTodo })(TodoContent);

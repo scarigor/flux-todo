@@ -15,5 +15,11 @@ export default {
     },
 
     fetchTodos: () => axios.get('/todos').then(res => res.data)
+  },
+
+  users: {
+    login: (credentials) => {
+      return axios.post('/login', {credentials}).then(res => res.data)
+    }
   }
 }

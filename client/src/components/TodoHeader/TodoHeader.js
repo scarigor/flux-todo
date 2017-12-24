@@ -32,19 +32,17 @@ class TodoHeader extends Component {
     }
   }
 
-  addTodo = text =>
-    // this.props.addTodo(text).then(() => this.props.history.push("/"));
-    this.props.addTodo(text)
+  addTodo = text => this.props.addTodo(text)
 
   render() {
     return (
       <header className="todo-header">
-        <Link to='/login'>Login</Link>
+        <Link to='/login'>Вход</Link>
         <div className="input-wrapper">
           <input
             className="header-input"
             type="text"
-            placeholder='What do you need to do?'
+            placeholder='Введите задачу'
             value={this.state.text}
             onChange={this.handleChange}
             onKeyPress={this.handleSubmit}

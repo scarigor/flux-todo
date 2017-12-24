@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Message, Button, Checkbox, Form } from 'semantic-ui-react'
 import Validator from 'validator';
 import InlineError from '../../Messages/InlineError/InlineError'
+import './LoginFrom.css';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class LoginForm extends Component {
   handleSubmit = () => {
     const errors = this.validate(this.state.data)
     this.setState({errors})
+
     if (Object.keys(errors).length === 0) {
       this.props
         .submit(this.state.data)
@@ -45,24 +47,26 @@ class LoginForm extends Component {
   render() {
     const { data, errors } = this.state
     return (<div className='login-page'>
-      <h1 className='login-heading'>Login</h1>
+      <header className='todo-header login-header'>
+        <h1 className='login-title'>Вход</h1>
+      </header>
 
-      <Form onSubmit={this.handleSubmit}>
+      <Form className='login-form' onSubmit={this.handleSubmit}>
 
-        {errors.global && <Message negative header={errors.global} />} 
+        {errors.global && <Message negative header={errors.global} />}
 
         <Form.Field error={!!errors.email}>
           <label htmlFor='email'>Email</label>
-          <input onChange={this.handleChange} id='email' name='email' type='email' placeholder='type your email here...' value={data.email}/> {errors.email && <InlineError text={errors.email}/>}
+          <input onChange={this.handleChange} id='email' name='email' type='email' placeholder='Введите адрес эл. почты' value={data.email}/> {errors.email && <InlineError text={errors.email}/>}
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
-          <label htmlFor='password'>Password</label>
-          <input onChange={this.handleChange} id='password' name='password' type='password' placeholder='Password' value={data.password}/> {errors.password && <InlineError text={errors.password}/>}
+          <label htmlFor='password'> Пароль</label>
+          <input onChange={this.handleChange} id='password' name='password' type='password' placeholder='Введите пароль' value={data.password}/> {errors.password && <InlineError text={errors.password}/>}
         </Form.Field>
 
         <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions'/>
+          <Checkbox label='Я согласен с правилами использования'/>
         </Form.Field>
         <Button primary type='submit'>Submit</Button>
       </Form>

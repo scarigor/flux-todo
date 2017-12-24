@@ -13,7 +13,7 @@
   background-color: #fff;
 }
 
-hr {
+hr.separator {
   width: 80%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.09);
