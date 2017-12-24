@@ -6,17 +6,11 @@ import LoginPage from '../components/pages/LoginPage'
 import HomePage from '../components/pages/HomePage'
 import './App.css'
 
-const mapStateToProps = state => ({
-  todos: state.todosReducer
-})
-
-const App = ({ todos }) => (
+const App = () => (
   <div className='todo-app'>
     <Route path='/' exact component={HomePage} />
     <Route path='/login' exact component={LoginPage} />
   </div>
 )
 
-export default connect(
-  mapStateToProps
-)(App)
+export default App

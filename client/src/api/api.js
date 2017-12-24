@@ -1,10 +1,8 @@
 import axios from "axios";
 
 export default {
-  user: {
-    login: credentials => axios.post("/api/auth", {credentials}).then(res => res.data.user)
-  },
   todos: {
-    addTodo: (text) => axios.post("/newtodo", {text}).then(res => res.data.todo)
+    // addTodo: (text) => axios.post("/addtodo", {text}).then(res => res.data.todo),
+    fetchTodos: () => axios.get('/todos').then(res => res.data)
   }
 }

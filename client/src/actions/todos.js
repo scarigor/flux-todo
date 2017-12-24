@@ -1,14 +1,15 @@
 import api from '../api/api';
 import ActionTypes from '../constants/ActionTypes'
 
-export const onAddTodo = (text) => ({
-  type: ActionTypes.ADD_TODO,
-  text
-})
+// Add new todo item
+const onAddTodo = todo => ({ type: ActionTypes.ADD_TODO, todo })
 
-export const addTodo = (text) => (dispatch) =>
-  api.user.addTodo(text).then(todo => dispatch(onAddTodo(todo)))
+export const addTodo = text => dispatch =>
+  api.todos.addTodo(text).then(todo => dispatch(onAddTodo(todo)))
 
-  // export const onAddTodo = text => ({ type: ActionTypes.ADD_TODO, text })
-  // export const onDeleteTodo = id => ({ type: ActionTypes.DEL_TODO, id })
-  // export const onToggleTodo = id => ({ type: ActionTypes.TOGGLE_TODO, id })
+
+// Get todo items from database
+const onFetchTodos = todos => ({ type: ActionTypes.FETCH_TODOS, todos })
+
+export const fetchTodos = () => dispatch =>
+  api.todos.fetchTodos().then(todos => dispatch(onFetchTodos(todos)))

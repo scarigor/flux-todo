@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { addTodo } from '../../actions/todos';
 import './TodoHeader.css'
+
 
 class TodoHeader extends Component {
   constructor(props) {
@@ -14,7 +17,7 @@ class TodoHeader extends Component {
 
   handleClick = () => {
     if (this.state.text) {
-      this.props.onAddTodo(this.state.text)
+      this.addTodo(this.state.text)
     }
     this.clearInput()
   }
@@ -24,10 +27,13 @@ class TodoHeader extends Component {
           isEnter = e.which === 13
 
     if (text && isEnter) {
-      this.props.onAddTodo(text)
+      this.addTodo(text)
       this.clearInput()
     }
   }
+
+  addTodo = text =>
+    this.props.addTodo(text).then(() => this.props.history.push("/"));
 
   render() {
     return (
@@ -49,4 +55,4 @@ class TodoHeader extends Component {
   }
 }
 
-export default TodoHeader
+export default connect(null, { addTodo })(TodoHeader)

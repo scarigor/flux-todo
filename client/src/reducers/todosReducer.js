@@ -1,44 +1,12 @@
 import ActionTypes from '../constants/ActionTypes'
-import Counter from '../utilis/Counter'
 
-const initialState = [
-  {
-    id: Counter.increment(),
-    done: false,
-    text: 'Learn express server'
-  },
-  {
-    id: Counter.increment(),
-    done: false,
-    text: 'Finish my diploma'
-  },
-  {
-    id: Counter.increment(),
-    done: false,
-    text: 'Buy awesome car'
-  }
-]
-
-const todosReducer = (state = initialState, action) => {
+const todosReducer = (state = [], action) => {
   switch (action.type) {
+    case ActionTypes.FETCH_TODOS:
+      return action.todos
+
     case ActionTypes.ADD_TODO:
-      const todo = {
-        id: Counter.increment(),
-        done: false,
-        text: action.text
-      }
-
-      return [...state, todo]
-
-    case ActionTypes.DEL_TODO:
-      return state.filter(todo => todo.id !== action.id)
-
-    case ActionTypes.TOGGLE_TODO:
-      return state.map(todo =>
-        (todo.id === action.id) ?
-          {...todo, done: !todo.done} :
-          todo
-      )
+      return [...state, action.todo]
 
     default:
       return state
@@ -46,8 +14,6 @@ const todosReducer = (state = initialState, action) => {
 }
 
 //selectors
-
 export const getAllTodos = state => state.todosReducer
-
 
 export default todosReducer;

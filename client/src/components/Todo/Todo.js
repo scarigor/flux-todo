@@ -3,8 +3,8 @@ import classNames  from 'classnames';
 import './Todo.css'
 
 const Todo = props => {
-  const handleDelete = () => props.onDelete(props.id),
-        handleToggle = () => props.onToggle(props.id)
+  // const handleDelete = () => props.onDelete(props.id),
+  //       handleToggle = () => props.onToggle(props.id)
 
   const todoItemClass = classNames('todo-item', {'completed': props.isDone}),
         closeBtnClass = classNames('todo-btn', 'close-todo'),
@@ -14,8 +14,10 @@ const Todo = props => {
     <li className={todoItemClass}>
       <p className="todo-title">{props.text}</p>
       <div className="todo-buttons">
-        <button onClick={handleDelete} className={closeBtnClass}></button>
-        <button onClick={handleToggle} className={doneBtnClass}></button>
+        {/* <button onClick={handleDelete} className={closeBtnClass}></button> */}
+        {/* <button onClick={handleToggle} className={doneBtnClass}></button> */}
+        <button className={closeBtnClass}></button>
+        <button className={doneBtnClass}></button>
       </div>
     </li>
   )
