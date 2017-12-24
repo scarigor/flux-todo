@@ -13,7 +13,7 @@ router.post('/addtodo', (req, res) => {
   })
 
   todo.save()
-  .then(result => res.status(200).json({ todo: result }))
+  .then(result => res.status(200).json(result))
   .catch(e => res.status(500).json({ error: e }))
 })
 
