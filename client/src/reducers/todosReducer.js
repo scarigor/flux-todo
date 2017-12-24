@@ -8,6 +8,20 @@ const todosReducer = (state = [], action) => {
     case ActionTypes.ADD_TODO:
       return [...state, action.todo]
 
+    case ActionTypes.REMOVE_TODO:
+      console.log(action)
+      return state.filter(todo =>
+        todo._id !== action.id
+      )
+
+    case ActionTypes.TOGGLE_TODO:
+      console.log(action)
+      return state.map(todo =>
+        todo._id === action.id ?
+          { ...todo, done: !todo.done } :
+          todo
+      )
+
     default:
       return state
   }

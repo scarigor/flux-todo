@@ -3,7 +3,7 @@ import Todo from '../Todo/Todo'
 import './TodoContent.css'
 import { connect } from "react-redux";
 import { getAllTodos } from "../../reducers/todosReducer";
-import { fetchTodos } from '../../actions/todos';
+import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 
 
 class TodoContent extends React.Component {
@@ -18,12 +18,15 @@ class TodoContent extends React.Component {
   renderTodo = (todo) => {
     return <Todo
               key={todo._id}
+              id={todo._id}
               text={todo.text}
-              isDone={todo.done} />
+              isDone={todo.done}
+              onToggle={this.props.toggleTodo}
+              onRemove={this.props.removeTodo}
+             />
   }
 
   render() {
-    console.log(this.props.todos)
     return (
       <main className="todo-content">
         <ul className="todos uncompleted-todos">
@@ -32,9 +35,9 @@ class TodoContent extends React.Component {
 
         <hr/>
 
-        {/* <ul className="todos completed-todos">
-          {this.props.todos.map((todo, i) => todo.done ? this.renderTodo(todo, i) : null).reverse()}
-        </ul> */}
+        <ul className="todos completed-todos">
+          {this.props.todos.map(todo => todo.done ? this.renderTodo(todo) : null).reverse()}
+        </ul>
       </main>
     )
   }
@@ -47,4 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchTodos })(TodoContent);
+export default connect(mapStateToProps, { fetchTodos, removeTodo, toggleTodo })(TodoContent);

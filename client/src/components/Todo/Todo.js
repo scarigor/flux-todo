@@ -1,10 +1,12 @@
 import React from 'react';
 import classNames  from 'classnames';
+import { connect } from "react-redux";
+import { removeTodo, toggleTodo } from '../../actions/todos';
 import './Todo.css'
 
 const Todo = props => {
-  // const handleDelete = () => props.onDelete(props.id),
-  //       handleToggle = () => props.onToggle(props.id)
+  const handleRemove = () => props.onRemove(props.id),
+        handleToggle = () => props.onToggle(props.id)
 
   const todoItemClass = classNames('todo-item', {'completed': props.isDone}),
         closeBtnClass = classNames('todo-btn', 'close-todo'),
@@ -14,13 +16,11 @@ const Todo = props => {
     <li className={todoItemClass}>
       <p className="todo-title">{props.text}</p>
       <div className="todo-buttons">
-        {/* <button onClick={handleDelete} className={closeBtnClass}></button> */}
-        {/* <button onClick={handleToggle} className={doneBtnClass}></button> */}
-        <button className={closeBtnClass}></button>
-        <button className={doneBtnClass}></button>
+        <button onClick={handleRemove} className={closeBtnClass}></button>
+        <button onClick={handleToggle} className={doneBtnClass}></button>
       </div>
     </li>
   )
 }
 
-export default Todo
+export default connect(null, { removeTodo, toggleTodo })(Todo)

@@ -33,7 +33,8 @@ class TodoHeader extends Component {
   }
 
   addTodo = text =>
-    this.props.addTodo(text).then(() => this.props.history.push("/"));
+    // this.props.addTodo(text).then(() => this.props.history.push("/"));
+    this.props.addTodo(text)
 
   render() {
     return (
