@@ -2,24 +2,20 @@ import ActionTypes from '../constants/ActionTypes'
 
 const todosReducer = (state = [], action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_TODOS:
+    case ActionTypes.FETCH_SUCCEEDED:
       return action.todos
 
-    case ActionTypes.ADD_TODO:
+    case ActionTypes.ADD_SUCCEEDED:
       return [...state, action.todo]
 
-    case ActionTypes.REMOVE_TODO:
-      console.log(action)
+    case ActionTypes.REMOVE_SUCCEEDED:
       return state.filter(todo =>
         todo._id !== action.id
       )
 
-    case ActionTypes.TOGGLE_TODO:
-      console.log(action)
+    case ActionTypes.TOGGLE_SUCCEEDED:
       return state.map(todo =>
-        todo._id === action.id ?
-          { ...todo, done: !todo.done } :
-          todo
+        todo._id === action.id ? { ...todo, done: !todo.done } : todo
       )
 
     default:

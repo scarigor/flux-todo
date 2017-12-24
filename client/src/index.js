@@ -2,10 +2,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from "react-router-dom";
+
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import createSagaMiddleware from 'redux-saga'
+
 import reducer from './reducers'
-import thunk from "redux-thunk";
+import todosSaga from './middleware';
 
 import App from './containers/App'
 
@@ -13,7 +16,11 @@ import './reset.css'
 import 'semantic-ui-css/semantic.min.css';
 import './index.css'
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+
+sagaMiddleware.run(todosSaga)
 
 ReactDOM.render(
   <BrowserRouter>
