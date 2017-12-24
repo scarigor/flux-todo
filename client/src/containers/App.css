@@ -1,0 +1,8 @@
+.todo-app {
+  width: 400px;
+  margin: 0 auto;
+}
+
+p {
+    word-wrap: break-word;
+}
