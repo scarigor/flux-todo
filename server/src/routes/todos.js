@@ -28,7 +28,7 @@ router.delete('/todo-:id', (req, res) => {
   .catch(e => res.status(500).json({ error: 'Invalid id!' }))
 })
 
-// Toggle todo
+// Toggled todo
 router.patch('/todo-:id', (req, res) => {
   Todo.findById(req.params.id)
   .exec()
