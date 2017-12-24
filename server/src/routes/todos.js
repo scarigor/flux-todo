@@ -18,18 +18,18 @@ router.post('/addtodo', (req, res) => {
 })
 
 // Remove todo
-router.delete('/:id', (req, res) => {
+router.delete('/todo-:id', (req, res) => {
   Todo.findOneAndRemove({ _id: req.params.id })
   .exec()
   .then(todo => {
-    todo ? res.status(200).json({ message: `Todo #${req.params.id} was removed!` }) :
+    todo ? res.status(200).json(todo) :
            res.status(404).json({ error: 'Invalid id!' })
   })
   .catch(e => res.status(500).json({ error: 'Invalid id!' }))
 })
 
 // Toggle todo
-router.patch('/:id', (req, res) => {
+router.patch('/todo-:id', (req, res) => {
   Todo.findById(req.params.id)
   .exec()
   .then(todo => {
