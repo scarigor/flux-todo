@@ -4,7 +4,7 @@ import * as api from '../api/api';
 
 function* fetchTodos(action) {
    try {
-      const todos = yield call(api.fetchTodos, action.todos);
+      const todos = yield call(api.fetchTodos);
       yield put({type: ActionTypes.FETCH_SUCCEEDED, todos});
    } catch (e) {
       yield put({type: ActionTypes.FETCH_FAILED, message: e.message});
