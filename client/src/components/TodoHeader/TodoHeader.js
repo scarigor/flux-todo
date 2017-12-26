@@ -37,7 +37,6 @@ class TodoHeader extends Component {
   render() {
     return (
       <header className="todo-header">
-        <Link to='/login'>Вход</Link>
         <div className="input-wrapper">
           <input
             className="header-input"
