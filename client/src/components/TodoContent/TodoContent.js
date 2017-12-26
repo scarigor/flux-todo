@@ -14,9 +14,7 @@ class TodoContent extends React.Component {
 
   componentDidMount = () => this.onInit(this.props);
 
-  onInit = props => {
-    props.fetchTodos()
-  }
+  onInit = props => props.fetchTodos()
 
   renderTodo = (todo) => {
     return <Todo
@@ -50,7 +48,6 @@ class TodoContent extends React.Component {
 function mapStateToProps(state) {
   return {
     todos: getAllTodos(state)
-    // isFetching: getIsFetching(state)
   }
 }
 
