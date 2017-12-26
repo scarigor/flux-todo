@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames  from 'classnames';
 import { connect } from "react-redux";
-import { removeTodo, toggleTodo } from '../../actions/todos';
 import './Todo.css'
 
 const Todo = props => {
@@ -23,4 +22,4 @@ const Todo = props => {
   )
 }
 
-export default connect(null, { removeTodo, toggleTodo })(Todo)
+export default Todo

@@ -1,15 +1,22 @@
 import React from 'react'
 import Todo from '../Todo/Todo'
 import './TodoContent.css'
+
 import { connect } from "react-redux";
 import { getAllTodos } from "../../reducers/todosReducer";
 import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 
 
 class TodoContent extends React.Component {
+  state = {
+    loading: false,
+  }
+
   componentDidMount = () => this.onInit(this.props);
 
-  onInit = props => props.fetchTodos()
+  onInit = props => {
+    props.fetchTodos()
+  }
 
   renderTodo = (todo) => {
     return <Todo
@@ -43,6 +50,7 @@ class TodoContent extends React.Component {
 function mapStateToProps(state) {
   return {
     todos: getAllTodos(state)
+    // isFetching: getIsFetching(state)
   }
 }
 
