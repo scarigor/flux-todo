@@ -1,8 +1,13 @@
-import ActionTypes from '../constants/ActionTypes'
+import { USER_LOGIN } from '../constants';
 
-const usersReducer = (state = {}, action) => {
+const initialState = {
+  users: [],
+  isLoading: false
+}
+
+const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.USER_LOGGED_IN:
+    case USER_LOGIN:
       return action.user
 
     default:
@@ -10,7 +15,7 @@ const usersReducer = (state = {}, action) => {
   }
 }
 
-export const getAllUsers = state => state.usersReducer
+export const getAllUsers = state => state.usersReducer.users
 
 
 export default usersReducer;

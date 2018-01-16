@@ -1,18 +1,22 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-import ActionTypes from '../constants/ActionTypes';
+import { FETCH_TODOS, FETCH_SUCCEEDED, FETCH_FAILED } from '../constants';
 import * as api from '../api/api';
 
 function* fetchTodos(action) {
    try {
       const todos = yield call(api.fetchTodos);
       yield delay(1000)
-      yield put({type: ActionTypes.FETCH_SUCCEEDED, todos});
+      yield put({
+        type: FETCH_SUCCEEDED,
+        isLoading: !action.isLoading,
+        todos
+      });
    } catch (e) {
-      yield put({type: ActionTypes.FETCH_FAILED, message: e.message});
+      yield put({type: FETCH_FAILED, message: e.message});
    }
 }
 
 export default function* watchFetchtodos() {
-  yield takeEvery(ActionTypes.FETCH_TODOS, fetchTodos);
+  yield takeEvery(FETCH_TODOS, fetchTodos);
 }

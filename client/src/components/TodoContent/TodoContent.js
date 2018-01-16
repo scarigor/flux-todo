@@ -3,15 +3,11 @@ import Todo from '../Todo/Todo'
 import './TodoContent.css'
 
 import { connect } from "react-redux";
-import { getAllTodos } from "../../reducers/todosReducer";
+import { getAllTodos, getIsLoading } from "../../reducers/todosReducer";
 import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 
 
 class TodoContent extends React.Component {
-  state = {
-    loading: false,
-  }
-
   componentDidMount = () => this.onInit(this.props);
 
   onInit = props => props.fetchTodos()
@@ -28,6 +24,10 @@ class TodoContent extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.props 
+    if (isLoading) {
+      return <h1>lol</h1>
+    }
     return (
       <main className="todo-content">
         <ul className="todos uncompleted-todos">
@@ -47,7 +47,8 @@ class TodoContent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    todos: getAllTodos(state)
+    todos: getAllTodos(state),
+    isLoading: getIsLoading(state)
   }
 }
 

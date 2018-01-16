@@ -1,20 +1,56 @@
-import ActionTypes from '../constants/ActionTypes'
+import {
+  FETCH_TODOS,
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  FETCH_SUCCEEDED,
+  ADD_SUCCEEDED,
+  REMOVE_SUCCEEDED,
+  TOGGLE_SUCCEEDED,
+} from '../constants';
 
-const todosReducer = (state = [], action) => {
+const initialState = {
+  todos: [],
+  isLoading: false
+}
+
+const todosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_SUCCEEDED:
-      return action.todos
+    case FETCH_TODOS:
+    case ADD_TODO:
+    case REMOVE_TODO:
+    case TOGGLE_TODO:
+      return { ...state, isLoading: action.isLoading }
 
-    case ActionTypes.ADD_SUCCEEDED:
-      return [...state, action.todo]
+    case FETCH_SUCCEEDED:
+      return {
+        ...state,
+        todos: action.todos,
+        isLoading: action.isLoading
+      }
 
-    case ActionTypes.REMOVE_SUCCEEDED:
-      return state.filter(todo =>
+    case ADD_SUCCEEDED:
+      return {
+        ...state,
+        todos: [...state.todos, action.todo],
+        isLoading: action.isLoading
+      }
+
+    case REMOVE_SUCCEEDED:
+      const filtered = state.todos.filter(todo =>
         todo._id !== action.id
       )
 
-    case ActionTypes.TOGGLE_SUCCEEDED:
-      return state.map(todo =>
+      return {
+        ...state,
+        todos: filtered,
+        isLoading: action.isLoading
+      }
+
+
+    case TOGGLE_SUCCEEDED:
+      // НЕ РАБОТАЕТ (Cannot read property 'map' of undefined todo container)
+      return state.todos.map(todo =>
         todo._id === action.id ? { ...todo, done: !todo.done } : todo
       )
 
@@ -24,6 +60,7 @@ const todosReducer = (state = [], action) => {
 }
 
 //selectors
-export const getAllTodos = state => state.todosReducer
+export const getAllTodos = state => state.todosReducer.todos
+export const getIsLoading = state => state.todosReducer.isLoading
 
 export default todosReducer;

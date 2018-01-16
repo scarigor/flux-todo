@@ -1,0 +1,15 @@
+export const ADD_TODO = 'ADD_TODO'
+export const ADD_SUCCEEDED = 'ADD_SUCCEEDED'
+export const ADD_FAILED = 'ADD_FAILED'
+
+export const REMOVE_TODO = 'REMOVE_TODO'
+export const REMOVE_SUCCEEDED = 'REMOVE_SUCCEEDED'
+export const REMOVE_FAILED = 'REMOVE_FAILED'
+
+export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const TOGGLE_SUCCEEDED = 'TOGGLE_SUCCEEDED'
+export const TOGGLE_FAILED = 'TOGGLE_FAILED'
+
+export const FETCH_TODOS = 'FETCH_TODOS'
+export const FETCH_SUCCEEDED = 'FETCH_SUCCEEDED'
+export const FETCH_FAILED = 'FETCH_FAILED'
