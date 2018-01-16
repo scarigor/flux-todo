@@ -32,7 +32,7 @@ class TodoContent extends React.Component {
           {uncompleted.map(todo => this.renderTodo(todo)).reverse()}
         </ul>
 
-        <Divider horizontal/>
+        <Divider />
 
         <ul className="todos completed-todos">
           {completed.map(todo => this.renderTodo(todo)).reverse()}

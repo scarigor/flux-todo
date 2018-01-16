@@ -8,3 +8,7 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+.ui.divider {
+  min-width: 50%;
+}
