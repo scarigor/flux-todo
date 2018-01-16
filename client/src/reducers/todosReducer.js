@@ -49,10 +49,14 @@ const todosReducer = (state = initialState, action) => {
 
 
     case TOGGLE_SUCCEEDED:
-      // НЕ РАБОТАЕТ (Cannot read property 'map' of undefined todo container)
-      return state.todos.map(todo =>
-        todo._id === action.id ? { ...todo, done: !todo.done } : todo
-      )
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo._id === action.id ? { ...todo, done: !todo.done } : todo
+        ),
+        isLoading: action.isLoading
+      }
+
 
     default:
       return state

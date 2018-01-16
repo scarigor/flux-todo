@@ -9,19 +9,16 @@ import { Divider, Dimmer, Loader } from 'semantic-ui-react'
 
 
 class TodoContent extends React.Component {
-  componentDidMount = () => this.onInit(this.props);
+  componentDidMount = () => this.props.fetchTodos()
 
-  onInit = props => props.fetchTodos()
-
-  renderTodo = (todo) => {
+  renderTodo = todo => {
     return <Todo
               key={todo._id}
               id={todo._id}
               text={todo.text}
               isDone={todo.done}
               onToggle={this.props.toggleTodo}
-              onRemove={this.props.removeTodo}
-             />
+              onRemove={this.props.removeTodo} />
   }
 
   render() {
@@ -29,7 +26,6 @@ class TodoContent extends React.Component {
 
     return (
       <main className="todo-content">
-
         { isLoading && <Dimmer active inverted><Loader/></Dimmer>}
 
         <ul className="todos uncompleted-todos">
