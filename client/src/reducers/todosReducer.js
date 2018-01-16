@@ -60,7 +60,14 @@ const todosReducer = (state = initialState, action) => {
 }
 
 //selectors
-export const getAllTodos = state => state.todosReducer.todos
 export const getIsLoading = state => state.todosReducer.isLoading
+
+export function getCompletedTodos(state) {
+ return state.todosReducer.todos.filter(t => t.done)
+}
+
+export function getUnCompletedTodos(state) {
+ return state.todosReducer.todos.filter(t => !t.done)
+}
 
 export default todosReducer;
