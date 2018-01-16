@@ -6,12 +6,12 @@ import { connect } from "react-redux";
 import { getIsLoading, getCompletedTodos, getUnCompletedTodos } from "../../reducers/todosReducer";
 import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 import { Divider, Dimmer, Loader } from 'semantic-ui-react'
-
+import LoadingBar from 'react-redux-loading-bar'
 
 class TodoContent extends React.Component {
   componentDidMount = () => this.props.fetchTodos()
 
-  renderTodo = todo => {
+  renderTodoItem = todo => {
     return <Todo
               key={todo._id}
               id={todo._id}
@@ -26,28 +26,30 @@ class TodoContent extends React.Component {
 
     return (
       <main className="todo-content">
-        { isLoading && <Dimmer active inverted><Loader/></Dimmer>}
+        <LoadingBar className='loading-bar'/>
+        {/* { isLoading && <Dimmer active inverted><Loader/></Dimmer>} */}
 
         <ul className="todos uncompleted-todos">
-          {uncompleted.map(todo => this.renderTodo(todo)).reverse()}
+          {uncompleted.map(todo => this.renderTodoItem(todo)).reverse()}
         </ul>
 
         <Divider />
 
         <ul className="todos completed-todos">
-          {completed.map(todo => this.renderTodo(todo)).reverse()}
+          {completed.map(todo => this.renderTodoItem(todo)).reverse()}
         </ul>
       </main>
     )
   }
 }
 
-
 const mapStateToProps = state => ({
     completed: getCompletedTodos(state),
     uncompleted: getUnCompletedTodos(state),
     isLoading: getIsLoading(state)
 })
+const mapDispatchToProps = { fetchTodos, removeTodo, toggleTodo }
 
 
-export default connect(mapStateToProps, { fetchTodos, removeTodo, toggleTodo })(TodoContent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoContent);
