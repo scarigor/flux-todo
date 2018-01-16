@@ -5,6 +5,7 @@ import './TodoContent.css'
 import { connect } from "react-redux";
 import { getAllTodos, getIsLoading } from "../../reducers/todosReducer";
 import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
+import { Divider, Dimmer, Loader } from 'semantic-ui-react'
 
 
 class TodoContent extends React.Component {
@@ -24,17 +25,18 @@ class TodoContent extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.props 
-    if (isLoading) {
-      return <h1>lol</h1>
-    }
+    const { isLoading } = this.props
+
     return (
       <main className="todo-content">
+        
+        { isLoading && <Dimmer active inverted><Loader/></Dimmer>}
+
         <ul className="todos uncompleted-todos">
           {this.props.todos.map(todo => !todo.done ? this.renderTodo(todo) : null).reverse()}
         </ul>
 
-        <hr className='separator'/>
+        <Divider horizontal/>
 
         <ul className="todos completed-todos">
           {this.props.todos.map(todo => todo.done ? this.renderTodo(todo) : null).reverse()}
