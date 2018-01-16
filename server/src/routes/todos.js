@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const router = express.Router()
 
 // Create todo
-router.post('/addtodo', (req, res) => {
+router.post('/', (req, res) => {
   const todo = new Todo({
     _id: mongoose.Types.ObjectId(),
     text: req.body.text,
@@ -18,7 +18,7 @@ router.post('/addtodo', (req, res) => {
 })
 
 // Remove todo
-router.delete('/todo-:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   Todo.findOneAndRemove({ _id: req.params.id })
   .exec()
   .then(todo => {
@@ -29,7 +29,7 @@ router.delete('/todo-:id', (req, res) => {
 })
 
 // Toggled todo
-router.patch('/todo-:id', (req, res) => {
+router.patch('/:id', (req, res) => {
   Todo.findById(req.params.id)
   .exec()
   .then(todo => {
