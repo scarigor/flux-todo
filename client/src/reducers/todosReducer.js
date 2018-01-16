@@ -57,7 +57,6 @@ const todosReducer = (state = initialState, action) => {
         isLoading: action.isLoading
       }
 
-
     default:
       return state
   }

@@ -6,7 +6,6 @@ import { ADD_TODO, ADD_SUCCEEDED, ADD_FAILED } from '../constants';
 function* addTodo(action) {
    try {
       const todo = yield call(api.addTodo, action.text);
-      yield delay(500)
       yield put({
         type: ADD_SUCCEEDED,
         isLoading: !action.isLoading,
