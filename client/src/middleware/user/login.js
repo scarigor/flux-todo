@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import * as api from '../../api/api';
 import { USER_LOGIN, LOGIN_SUCCEEDED, LOGIN_FAILED } from '../../constants';

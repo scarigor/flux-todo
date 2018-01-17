@@ -65,12 +65,10 @@ const todos = (state = initialState, action = {}) => {
 //selectors
 export const getLoadingStatus = state => state.todos.isLoading
 
-export function getCompletedTodos(state) {
- return state.todos.todos.filter(t => t.done)
-}
+export const getCompletedTodos = state =>
+  state.todos.todos.filter(t => t.done)
 
-export function getUnCompletedTodos(state) {
- return state.todos.todos.filter(t => !t.done)
-}
+export const getUnCompletedTodos = state =>
+  state.todos.todos.filter(t => !t.done)
 
 export default todos;

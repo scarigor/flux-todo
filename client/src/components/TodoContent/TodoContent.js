@@ -31,7 +31,7 @@ class TodoContent extends React.Component {
     return (
       <main className="todo-content">
         <LoadingBar className='loading-bar'/>
-        {/* { isLoading && <Dimmer active inverted><Loader/></Dimmer>} */}
+        { isLoading && <Dimmer active inverted><Loader/></Dimmer>}
 
         <ul className="todos uncompleted-todos">
           {uncompleted.map(todo => this.renderTodoItem(todo)).reverse()}

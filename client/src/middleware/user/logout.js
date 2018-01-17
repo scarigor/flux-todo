@@ -1,6 +1,4 @@
-import { delay } from 'redux-saga'
-import { call, put, takeEvery } from 'redux-saga/effects'
-import * as api from '../../api/api';
+import { put, takeEvery } from 'redux-saga/effects'
 import { USER_LOGOUT, LOGOUT_SUCCEEDED, LOGOUT_FAILED } from '../../constants';
 
 function* logout(action) {
