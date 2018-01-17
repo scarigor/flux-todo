@@ -1,15 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const addTodo = text => {
-  return axios.post("/todos/addtodo", { text }).then(res => res.data)
-}
+const path = '/todos'
 
-export const removeTodo = id => {
-  return axios.delete(`/todos/todo-${id}`).then(res => res.data._id)
-}
+export const addTodo = text =>
+  axios.post(path, { text }).then(res => res.data)
 
-export const toggleTodo = id => {
-  return axios.patch(`/todos/todo-${id}`).then(res => res.data._id)
-}
 
-export const fetchTodos = () => axios.get('/todos').then(res => res.data)
+export const removeTodo = id =>
+  axios.delete(path + `/${id}`).then(res => res.data._id)
+
+
+export const toggleTodo = id =>
+  axios.patch(path + `/${id}`).then(res => res.data._id)
+
+
+export const fetchTodos = () => axios.get(path).then(res => res.data)
+
+export const login = credentials =>
+  axios.post('/auth', { credentials }).then(res => res.data.user)
+
+export const signup = user =>
+  axios.post('/auth', { user }).then(res => res.data.user)

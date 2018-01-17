@@ -3,7 +3,11 @@ import Todo from '../Todo/Todo'
 import './TodoContent.css'
 
 import { connect } from "react-redux";
-import { getIsLoading, getCompletedTodos, getUnCompletedTodos } from "../../reducers/todosReducer";
+import {
+  getLoadingStatus,
+  getCompletedTodos,
+  getUnCompletedTodos
+} from "../../reducers/todos";
 import { fetchTodos, removeTodo, toggleTodo } from '../../actions/todos';
 import { Divider, Dimmer, Loader } from 'semantic-ui-react'
 import LoadingBar from 'react-redux-loading-bar'
@@ -46,10 +50,9 @@ class TodoContent extends React.Component {
 const mapStateToProps = state => ({
     completed: getCompletedTodos(state),
     uncompleted: getUnCompletedTodos(state),
-    isLoading: getIsLoading(state)
-})
+    isLoading: getLoadingStatus(state)
+});
+
 const mapDispatchToProps = { fetchTodos, removeTodo, toggleTodo }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoContent);
