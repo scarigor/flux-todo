@@ -3,9 +3,9 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import * as api from '../../api/api';
 import { USER_LOGIN, LOGIN_SUCCEEDED, LOGIN_FAILED } from '../../constants';
 
-function* login(action) {
+function* signup(action) {
    try {
-      const user = yield call(api.login, action.credentials);
+      const user = yield call(api.signup, action.credentials);
       localStorage.bookwormJWT = user.token;
       // setAuthorizationHeader(user.token);
       yield put({
@@ -19,5 +19,5 @@ function* login(action) {
 }
 
 export default function* watchLogin() {
-  yield takeEvery(USER_LOGIN, login);
+  yield takeEvery(USER_SIGNUP, signup);
 }
