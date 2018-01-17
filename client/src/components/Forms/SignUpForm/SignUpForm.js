@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Form, Button } from "semantic-ui-react";
-import isEmail from "validator/lib/isEmail";
-// import InlineError from "../messages/InlineError";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Form, Button } from 'semantic-ui-react';
+import isEmail from 'validator/lib/isEmail';
+// import InlineError from '../messages/InlineError';
 
 class SignupForm extends React.Component {
   state = {
     data: {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     },
     loading: false,
     errors: {}
@@ -37,8 +37,8 @@ class SignupForm extends React.Component {
   validate = data => {
     const errors = {};
 
-    if (!isEmail(data.email)) errors.email = "Invalid email";
-    if (!data.password) errors.password = "Can't be blank";
+    if (!isEmail(data.email)) errors.email = 'Invalid email';
+    if (!data.password) errors.password = 'Cant be blank';
 
     return errors;
   };
@@ -49,12 +49,12 @@ class SignupForm extends React.Component {
     return (
       <Form onSubmit={this.onSubmit} loading={loading}>
         <Form.Field error={!!errors.email}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor='email'>Email</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email@email.com"
+            type='email'
+            id='email'
+            name='email'
+            placeholder='email@email.com'
             value={data.email}
             onChange={this.onChange}
           />
@@ -63,11 +63,11 @@ class SignupForm extends React.Component {
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor='password'>Password</label>
           <input
-            type="password"
-            id="password"
-            name="password"
+            type='password'
+            id='password'
+            name='password'
             value={data.password}
             onChange={this.onChange}
           />
