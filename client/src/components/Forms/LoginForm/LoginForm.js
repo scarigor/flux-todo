@@ -46,11 +46,7 @@ class LoginForm extends Component {
 
   render() {
     const { data, errors } = this.state
-    return (<div className='login-page'>
-      <header className='todo-header login-header'>
-        <h1 className='login-title'>Вход</h1>
-      </header>
-
+    return (
       <Form className='login-form' onSubmit={this.handleSubmit}>
 
         {errors.global && <Message negative header={errors.global} />}
@@ -70,7 +66,7 @@ class LoginForm extends Component {
         </Form.Field>
         <Button primary type='submit'>Submit</Button>
       </Form>
-    </div>)
+    )
   }
 }
 
