@@ -3,6 +3,9 @@ p {
   word-wrap: break-word;
 }
 
+#root,
+.app {height: 100%;}
+
 button {
   border: none;
   background: none;
