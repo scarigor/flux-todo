@@ -19,7 +19,7 @@ mongoose.connect(
 
 app.use(bodyParser.json());
 
-app.use('/todos', todos)
+app.use('/api/todos', todos)
 
 app.get("/*", (req, res) => res.sendFile(path.join(__dirname, "index.html")))
 

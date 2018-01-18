@@ -1,14 +1,6 @@
 import React from 'react';
-import TodoHeader from '../TodoHeader/TodoHeader'
-import TodoContent from '../TodoContent/TodoContent'
+import TodoApp from '../TodoApp/TodoApp'
 
-const HomePage = props => {
-  return (
-    <div>
-      <TodoHeader />
-      <TodoContent />
-    </div>
-  )
-}
+const HomePage = props => <TodoApp />
 
 export default HomePage

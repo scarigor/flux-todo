@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const path = '/todos'
+const path = 'api/todos'
 
 export const addTodo = text =>
   axios.post(path, { text }).then(res => res.data)

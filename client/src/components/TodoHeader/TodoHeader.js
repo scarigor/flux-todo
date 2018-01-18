@@ -32,7 +32,7 @@ class TodoHeader extends Component {
     }
   }
 
-  addTodo = text => this.props.addTodo(text)
+  addTodo = (text) => this.props.addTodo(text)
 
   render() {
     return (
@@ -41,7 +41,7 @@ class TodoHeader extends Component {
           <input
             className="header-input"
             type="text"
-            placeholder='Введите задачу'
+            placeholder='Create task...'
             value={this.state.text}
             onChange={this.handleChange}
             onKeyPress={this.handleSubmit}
