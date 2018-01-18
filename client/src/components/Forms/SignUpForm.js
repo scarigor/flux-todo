@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Header, Checkbox, Form, Button } from 'semantic-ui-react';
+import { Dimmer, Loader, Header, Checkbox, Form, Button } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
 import InlineError from '../Messages/InlineError';
 import _ from 'lodash';
@@ -13,7 +13,7 @@ class SignupForm extends Component {
     },
     pw_confirmed: false,
     isChecked: false,
-    loading: false,
+    // loading: false,
     errors: {}
   };
 
@@ -37,12 +37,12 @@ class SignupForm extends Component {
     this.setState({ errors });
 
     if (_.isEmpty(errors)) {
-      this.setState({ loading: true });
+      // this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err =>
-          this.setState({ errors: err.response.data.errors, loading: false })
-        );
+        // .catch(err =>
+        //   this.setState({ errors: err.response.data.errors, loading: false })
+        // );
     }
   };
 
@@ -71,10 +71,11 @@ class SignupForm extends Component {
   };
 
   render() {
-    const { data, errors, loading, isChecked, pw_confirmed } = this.state;
-
+    const { data, errors, isChecked, pw_confirmed } = this.state;
+    console.log(this.props)
     return (
-      <Form className='form' onSubmit={this.onSubmit} loading={loading}>
+      <Form className='form' onSubmit={this.onSubmit}>
+        {this.props.isLoading && <Dimmer active inverted><Loader/></Dimmer>}
         <Header as='h3'>Sign Up</Header>
         <Form.Field error={!!errors.email}>
           <label htmlFor='email'>Email</label>

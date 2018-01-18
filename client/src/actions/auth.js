@@ -11,8 +11,8 @@ export const userLogout = () => ({
   isLoading: true,
 })
 
-export const userSignUp = credentials => ({
+export const userSignUp = data => ({
   type: USER_SIGNUP,
   isLoading: true,
-  credentials
+  data
 })

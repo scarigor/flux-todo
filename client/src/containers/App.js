@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import GuestRoute from '../routes/GuestRoute';
 import LoginPage from '../components/pages/LoginPage'
 import MainLayout from '../layouts/MainLayout';
@@ -7,8 +7,6 @@ import LoginLayout from '../layouts/LoginLayout';
 import SignUpPage from '../components/pages/SignUpPage';
 import ResetPage from '../components/pages/ResetPage';
 import HomePage from '../components/pages/HomePage';
-import MainFooter from '../components/MainFooter/MainFooter';
-import MainHeader from '../components/MainHeader/MainHeader';
 import './App.css'
 
 const App = () => (

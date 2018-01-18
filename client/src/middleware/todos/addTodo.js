@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import * as api from '../../api/api';
+import * as api from '../../api';
 import { ADD_TODO, ADD_SUCCEEDED, ADD_FAILED } from '../../constants';
 
 function* addTodo(action) {

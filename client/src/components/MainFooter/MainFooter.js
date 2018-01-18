@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import Logo from '../Logo/Logo';
 import { Icon } from 'semantic-ui-react'
 import './MainFooter.css'
 

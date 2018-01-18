@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { loadingBarReducer } from 'react-redux-loading-bar'
 import todos from './todos'
-import user from './user'
+import auth from './auth'
 
 const rootReducer = combineReducers({
   loadingBar: loadingBarReducer,
   todos,
-  user
+  auth
 })
 
 export default rootReducer

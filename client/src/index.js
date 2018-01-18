@@ -1,20 +1,17 @@
 
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from "react-router-dom";
-
+import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import createSagaMiddleware from 'redux-saga'
-
-import reducer from './reducers'
+import createSagaMiddleware from 'redux-saga';
+import reducer from './reducers';
 import todosSaga from './middleware';
+import App from './containers/App';
 
-import App from './containers/App'
-
-import './reset.css'
+import './reset.css';
 import 'semantic-ui-css/semantic.min.css';
-import './index.css'
+import './index.css';
 
 const sagaMiddleware = createSagaMiddleware()
 

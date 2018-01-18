@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import SignUpForm from '../Forms/SignUpForm';
 import { connect } from 'react-redux';
+import { getLoadingStatus } from '../../reducers/auth';
 import { userSignUp } from '../../actions/auth';
 
 class SignUpPage extends Component {
-  submit = data =>
-    this.props.userSignUp(data).then(() => this.props.history.push('/'))
+  submit = data => {
+    this.props.userSignUp(data)
+  }
 
-  render = () => <SignUpForm submit={this.submit}/>
+  render = () =>
+     <SignUpForm
+      isLoading={this.props.isLoading}
+      submit={this.submit}
+    />
 }
 
-export default connect(null, { userSignUp })(SignUpPage);
+const mapStateToProps = state => ({
+  isLoading: getLoadingStatus(state)
+})
+
+export default connect(mapStateToProps, { userSignUp })(SignUpPage);

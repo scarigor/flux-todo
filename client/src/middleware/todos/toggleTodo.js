@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { TOGGLE_TODO, TOGGLE_SUCCEEDED, TOGGLE_FAILED } from '../../constants';
-import * as api from '../../api/api';
+import * as api from '../../api';
 
 function* toggleTodo(action) {
    try {

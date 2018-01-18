@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { REMOVE_TODO, REMOVE_SUCCEEDED, REMOVE_FAILED } from '../../constants';
-import * as api from '../../api/api';
+import * as api from '../../api';
 
 function* removeTodo(action) {
    try {
