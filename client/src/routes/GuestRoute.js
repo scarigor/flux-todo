@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from "react-router-dom";
 
 
-const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+const GuestRoute = ({ component: Component, layout: Layout, ...rest }) => (
   <Route {...rest} render={props => (
     <Layout>
       <Component {...props} />
@@ -10,4 +10,4 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   )} />
 )
 
-export default AppRoute;
+export default GuestRoute;

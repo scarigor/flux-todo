@@ -115,7 +115,7 @@ class SignupForm extends Component {
           <Checkbox
             checked={isChecked}
             onChange={this.onToggle}
-            label='Я согласен с правилами использования'
+            label='I agree to the Privacy Policy'
           />
         </Form.Field>
 

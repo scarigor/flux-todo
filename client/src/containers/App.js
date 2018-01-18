@@ -12,17 +12,17 @@ import MainFooter from '../components/MainFooter/MainFooter'
 import MainLayout from '../layouts/MainLayout';
 import LoginLayout from '../layouts/LoginLayout';
 
-import AppRoute from '../routes/AppRoute';
+import GuestRoute from '../routes/GuestRoute';
 
 import './App.css'
 
 const App = () => (
   <div className='app'>
     <Switch>
-      <AppRoute exact path="/" layout={MainLayout} component={HomePage} />
-      <AppRoute path="/login" layout={LoginLayout} component={LoginPage} />
-      <AppRoute path="/signup" layout={LoginLayout} component={SignUpPage} />
-      <AppRoute path="/reset" layout={LoginLayout} component={ResetPage} />
+      <GuestRoute exact path="/" layout={MainLayout} component={HomePage} />
+      <GuestRoute path="/login" layout={LoginLayout} component={LoginPage} />
+      <GuestRoute path="/signup" layout={LoginLayout} component={SignUpPage} />
+      <GuestRoute path="/reset" layout={LoginLayout} component={ResetPage} />
     </Switch>
   </div>
 )
