@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Header, Checkbox, Form, Button } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
-// import InlineError from '../messages/InlineError';
+import InlineError from '../Messages/InlineError';
+import _ from 'lodash';
 
 class SignupForm extends Component {
   state = {
     data: {
       email: '',
       password: '',
-      password_check: '',
     },
+    pw_confirmed: false,
     isChecked: false,
     loading: false,
     errors: {}
@@ -26,16 +27,16 @@ class SignupForm extends Component {
     this.setState({
       ...this.state, isChecked: !this.state.isChecked
     })
-    // console.log(this.state.data.checked)
 
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
+
     const errors = this.validate(this.state.data);
 
     this.setState({ errors });
 
-    if (Object.keys(errors).length === 0) {
+    if (_.isEmpty(errors)) {
       this.setState({ loading: true });
       this.props
         .submit(this.state.data)
@@ -45,25 +46,32 @@ class SignupForm extends Component {
     }
   };
 
-  isFilled(data) {
-    for (let field of Object.keys(data)) {
-      if (!data[field]) return false
+  onPasswordConfirm = (e) => {
+    const { password } = this.state.data;
+
+    if (e.target.value === password) {
+      this.setState({
+        ...this.state, pw_confirmed: true
+      })
+    } else { this.setState({
+        ...this.state, pw_confirmed: false
+      })
     }
-    return true;
   }
 
   validate = data => {
     const errors = {};
+    const { pw_confirmed } = this.state
 
     if (!isEmail(data.email)) errors.email = 'Invalid email';
-    if (!data.password) errors.password = 'Cant be blank';
+    if (!data.password) errors.password = 'Cant be blank!';
+    if (!pw_confirmed) errors.pw_confirm = 'Passwords do not match!';
 
     return errors;
   };
 
   render() {
-    const { data, errors, loading, isChecked } = this.state,
-          isFilled = this.isFilled(data) && isChecked;
+    const { data, errors, loading, isChecked, pw_confirmed } = this.state;
 
     return (
       <Form className='form' onSubmit={this.onSubmit} loading={loading}>
@@ -74,12 +82,11 @@ class SignupForm extends Component {
             type='email'
             id='email'
             name='email'
-            placeholder='email@email.com'
+            placeholder='example@email.com'
             value={data.email}
             onChange={this.onChange}
           />
-          {errors.email && <h1>Lol</h1>}
-          {/* {errors.email && <InlineError text={errors.email} />} */}
+          {errors.email && <InlineError text={errors.email} />}
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
@@ -92,32 +99,27 @@ class SignupForm extends Component {
             onChange={this.onChange}
             placeholder='Password'
           />
-          {errors.password && <h1>Lol</h1>}
-          {/* {errors.password && <InlineError text={errors.password} />} */}
+          {errors.password && <InlineError text={errors.password} />}
         </Form.Field>
 
-        <Form.Field error={!!errors.password}>
+        <Form.Field error={!!errors.pw_confirm}>
           <input
             type='password'
-            id='password_check'
-            name='password_check'
-            value={data.password_check}
-            onChange={this.onChange}
-            placeholder='Repeat password'
+            onChange={this.onPasswordConfirm}
+            placeholder='Confirm password'
           />
-          {errors.password && <h1>Lol</h1>}
-          {/* {errors.password && <InlineError text={errors.password} />} */}
+          {!pw_confirmed &&  <InlineError text={errors.pw_confirm} />}
         </Form.Field>
 
         <Form.Field>
           <Checkbox
-            checked={data.isChecked}
+            checked={isChecked}
             onChange={this.onToggle}
             label='Я согласен с правилами использования'
           />
         </Form.Field>
 
-        <Button disabled={!isFilled} primary>Sign Up</Button>
+        <Button disabled={!isChecked} primary>Sign Up</Button>
       </Form>
     );
   }

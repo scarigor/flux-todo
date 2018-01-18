@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Header, Message, Button, Form } from 'semantic-ui-react'
+import { List, Message, Button, Form } from 'semantic-ui-react'
 import Validator from 'validator';
-import InlineError from '../../Messages/InlineError/InlineError'
+import InlineError from '../Messages/InlineError'
+import { Link } from 'react-router-dom';
 
-class ResetForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {
         email: '',
+        password: ''
       },
       loading: false,
       errors: {}
@@ -19,6 +21,8 @@ class ResetForm extends Component {
     const errors = {}
     if (!Validator.isEmail(data.email))
       errors.email = 'Invalid email!'
+    if (!data.password)
+      errors.password = 'Cant be blank!'
     return errors
   }
 
@@ -41,10 +45,10 @@ class ResetForm extends Component {
   }
 
   render() {
-    const { data, errors } = this.state
+    const { data, errors } = this.state;
+
     return (
       <Form className='form' onSubmit={this.handleSubmit}>
-        <Header as='h3'>Reset password</Header>
 
         {errors.global && <Message negative header={errors.global} />}
 
@@ -55,15 +59,44 @@ class ResetForm extends Component {
             id='email'
             name='email'
             type='email'
-            placeholder='Введите адрес эл. почты'
+            placeholder='Email'
             value={data.email}
-          /> {errors.email && <InlineError text={errors.email}/>}
+          />
+          {errors.email && <InlineError text={errors.email}/>}
+        </Form.Field>
+
+        <Form.Field error={!!errors.password}>
+          <label htmlFor='password'> Password</label>
+          <input
+            onChange={this.handleChange}
+            id='password'
+            name='password'
+            type='password'
+            placeholder='Type password'
+            value={data.password}
+          />
+          {errors.password && <InlineError text={errors.password}/>}
         </Form.Field>
 
         <Button primary type='submit'>Submit</Button>
+
+        <List>
+          <List.Item>
+            <List.Icon name='question' />
+            <List.Content>
+              <Link to='/reset'>Forgot password</Link>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Icon name='add user' />
+            <List.Content>
+              <Link to='/signup'>Create Account</Link>
+            </List.Content>
+          </List.Item>
+        </List>
       </Form>
     )
   }
 }
 
-export default ResetForm;
+export default LoginForm;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SignUpForm from '../Forms/SignUpForm/SignUpForm';
+import SignUpForm from '../Forms/SignUpForm';
 import { connect } from 'react-redux';
 import { userSignUp } from '../../actions/auth';
 

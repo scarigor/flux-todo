@@ -6,7 +6,7 @@ const InlineError = ({ text }) => (
 );
 
 InlineError.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string
 };
 
 export default InlineError

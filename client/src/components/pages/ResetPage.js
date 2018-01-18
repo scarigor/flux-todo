@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ResetForm from '../Forms/ResetForm/ResetForm';
+import ResetForm from '../Forms/ResetForm';
 
 class ResetPage extends Component {
   submit = data =>
