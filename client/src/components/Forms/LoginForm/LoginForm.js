@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import { Message, Button, Checkbox, Form } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { List, Message, Button, Form } from 'semantic-ui-react'
 import Validator from 'validator';
 import InlineError from '../../Messages/InlineError/InlineError'
+import { Link } from 'react-router-dom';
 import './LoginFrom.css';
 
 class LoginForm extends Component {
@@ -47,7 +48,7 @@ class LoginForm extends Component {
   render() {
     const { data, errors } = this.state
     return (
-      <Form className='login-form' onSubmit={this.handleSubmit}>
+      <Form className='form' onSubmit={this.handleSubmit}>
 
         {errors.global && <Message negative header={errors.global} />}
 
@@ -61,10 +62,22 @@ class LoginForm extends Component {
           <input onChange={this.handleChange} id='password' name='password' type='password' placeholder='Введите пароль' value={data.password}/> {errors.password && <InlineError text={errors.password}/>}
         </Form.Field>
 
-        <Form.Field>
-          <Checkbox label='Я согласен с правилами использования'/>
-        </Form.Field>
         <Button primary type='submit'>Submit</Button>
+
+        <List>
+          <List.Item>
+            <List.Icon name='question' />
+            <List.Content>
+              <Link to='/reset'>Forgot password</Link>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Icon name='add user' />
+            <List.Content>
+              <Link to='/signup'>Create Account</Link>
+            </List.Content>
+          </List.Item>
+        </List>
       </Form>
     )
   }
