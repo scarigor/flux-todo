@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 
 import todos from './src/routes/todos'  //routes
-
+import auth from './src/routes/auth'  //routes
 
 const app = express()
 dotenv.config();
@@ -20,6 +20,7 @@ mongoose.connect(
 app.use(bodyParser.json());
 
 app.use('/api/todos', todos)
+app.use('/api/auth', auth)
 
 app.get("/*", (req, res) => res.sendFile(path.join(__dirname, "index.html")))
 
