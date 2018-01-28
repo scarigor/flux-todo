@@ -1,4 +1,4 @@
-import { USER_SIGNUP, SIGNUP_SUCCEEDED, USER_LOGIN, USER_LOGOUT } from '../constants';
+import { USER_SIGNUP, SIGNUP_SUCCEEDED, USER_LOGIN, LOGIN_SUCCEEDED, USER_LOGOUT } from '../constants';
 
 const initialState = {
   user: {},
@@ -18,7 +18,7 @@ const auth = (state = initialState, action = {}) => {
         isLoading: action.isLoading
       }
 
-    case USER_LOGIN:
+    case LOGIN_SUCCEEDED:
       return action.user;
 
     case USER_LOGOUT:
