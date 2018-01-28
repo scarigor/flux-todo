@@ -9,18 +9,12 @@ router.post('/signup', (req, res) => {
 
   const user = new User({
     _id: mongoose.Types.ObjectId(),
-    email: email,
-    password: password,
+    email: email
   })
 
-  user.save(error => {
-    if (error) {
-      return res.json({
-        success: false,
-        message: "That email is already exists"
-      })
-    }
-  })
+  user.setPassword(password)
+
+  user.save()
   .then(user => res.status(200).json(user))
   .catch(e => res.status(500).json({ error: e }))
 })
