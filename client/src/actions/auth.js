@@ -1,9 +1,9 @@
 import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../constants';
 
-export const userLogin = credentials => ({
+export const userLogin = data => ({
   type: USER_LOGIN,
   isLoading: true,
-  credentials
+  data
 })
 
 export const userLogout = () => ({

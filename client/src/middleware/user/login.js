@@ -4,9 +4,8 @@ import { USER_LOGIN, LOGIN_SUCCEEDED, LOGIN_FAILED } from '../../constants';
 
 function* login(action) {
    try {
-      const user = yield call(api.login, action.credentials);
-      localStorage.bookwormJWT = user.token;
-      // setAuthorizationHeader(user.token);
+      const user = yield call(api.login, action.data);
+
       yield put({
         type: LOGIN_SUCCEEDED,
         isLoading: !action.isLoading,
