@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 
 const router = express.Router()
 
-// Create todo
 router.post('/signup', (req, res) => {
   const { email, password } = req.body.data
 
@@ -14,7 +13,14 @@ router.post('/signup', (req, res) => {
     password: password,
   })
 
-  user.save()
+  user.save(error => {
+    if (error) {
+      return res.json({
+        success: false,
+        message: "That email is already exists"
+      })
+    }
+  })
   .then(user => res.status(200).json(user))
   .catch(e => res.status(500).json({ error: e }))
 })
