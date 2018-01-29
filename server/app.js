@@ -34,13 +34,6 @@ app.use(passport.session());
 app.use('/api/todos', todos);
 app.use('/api/auth', users);
 
-// Simple route works fine
-// app.post('/api/auth/login', (req, res) => {
-//   const { email, password } = req.body.data
-//
-//   console.log(email + " " + password)
-// });
-
 app.post('/api/auth/login', passport.authenticate('json-custom'),
   (req, res) => {
     return res.status(200).json(req.user)
@@ -50,6 +43,7 @@ app.post('/api/auth/login', passport.authenticate('json-custom'),
 passport.use(new LocalStrategy(
   function(body, done) {
     const data = body.data
+
     User.findOne({ email: data.email }, function(err, user) {
       if (err) { return done(err); }
 
