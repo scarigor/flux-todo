@@ -7,7 +7,9 @@ import session from 'express-session';
 const MongoStore = require('connect-mongo')(session);
 import passport from 'passport';
 // import { Strategy as LocalStrategy } from 'passport-local';
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-json-custom').Strategy;
+
 import todos from './src/routes/todos';
 import users from './src/routes/users';
 import User from './src/models/user';
@@ -39,25 +41,23 @@ app.use('/api/auth', users);
 //   console.log(email + " " + password)
 // });
 
-app.post('/api/auth/login', passport.authenticate('local'), (req, res) => {
-  console.log(req.session.passport.user)
-  return res.json(req.user);
-})
+app.post('/api/auth/login', passport.authenticate('json-custom'),
+  (req, res) => {
+    return res.status(200).json(req.user)
+  }
+)
 
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    // passReqToCallback: true
-  },
-  function(email, password, done) {
-    User.findOne({ email: email }, function(err, user) {
+passport.use(new LocalStrategy(
+  function(body, done) {
+    const data = body.data
+    User.findOne({ email: data.email }, function(err, user) {
       if (err) { return done(err); }
 
       if (!user) {
         return done(null, false, { message: 'Incorrect email.' });
       }
 
-      if (!user.isValidPassword(password)) {
+      if (!user.isValidPassword(data.password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
 
