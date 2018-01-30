@@ -1,14 +1,23 @@
 import React from 'react';
 import { Switch } from "react-router-dom";
+
+// Routes
 import GuestRoute from '../routes/GuestRoute';
 import UserRoute from '../routes/UserRoute';
-import LoginPage from '../components/pages/LoginPage'
+import AdminRoute from '../routes/AdminRoute';
+
+// Layouts
 import MainLayout from '../layouts/MainLayout';
 import LoginLayout from '../layouts/LoginLayout';
+
+// Pages
+import LoginPage from '../components/pages/LoginPage'
 import SignUpPage from '../components/pages/SignUpPage';
 import ResetPage from '../components/pages/ResetPage';
 import HomePage from '../components/pages/HomePage';
 import Dashboard from '../components/pages/Dashboard';
+import AdminPage from '../components/pages/AdminPage';
+
 import './App.css'
 
 const App = () => (
@@ -18,7 +27,8 @@ const App = () => (
       <GuestRoute path="/login" layout={LoginLayout} component={LoginPage} />
       <GuestRoute path="/signup" layout={LoginLayout} component={SignUpPage} />
       <GuestRoute path="/reset" layout={LoginLayout} component={ResetPage} />
-      <UserRoute path="/dashboard" layout={LoginLayout} component={Dashboard} />
+      <UserRoute path="/dashboard" layout={MainLayout} component={Dashboard} />
+      <AdminRoute path="/admin" layout={MainLayout} component={AdminPage} />
     </Switch>
   </div>
 );

@@ -13,12 +13,6 @@ const auth = (state = initialState, action = {}) => {
       return { ...state, isLoading: action.isLoading }
 
     case SIGNUP_SUCCEEDED:
-      return {
-        ...state,
-        user: action.user,
-        isLoading: action.isLoading
-      }
-
     case LOGIN_SUCCEEDED:
       return {
         ...state,
@@ -39,5 +33,8 @@ const auth = (state = initialState, action = {}) => {
 }
 
 export const getLoadingStatus = state => state.auth.isLoading
+export const getAuthenticationStatus = state => !!state.auth.user.token
+export const getAdminStatus = state => state.auth.user.isAdmin
+
 
 export default auth;

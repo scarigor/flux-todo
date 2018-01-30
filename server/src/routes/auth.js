@@ -5,11 +5,11 @@ import mongoose from 'mongoose';
 const router = express.Router()
 
 router.post('/login', (req, res) => {
-  const { email, password } = req.body
+  const { data } = req.body
 
-  User.findOne({ email: email })
+  User.findOne({ email: data.email })
     .then( user => {
-      if (user && user.isValidPassword(password)) {
+      if (user && user.isValidPassword(data.password)) {
         res.json({ user: user.toAuthJSON() });
       } else {
         res.status(400).json({ errors: "Invalid credentials!" });

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import  { getAuthenticationStatus, getAdminStatus } from '../reducers/auth';
 
-const UserRoute = (
+const AdminRoute = (
   { isAuthenticated,
     isAdmin,
     component: Component,
@@ -12,7 +12,7 @@ const UserRoute = (
   }
 ) => (
   <Route {...rest} render={ props =>
-    isAuthenticated && !isAdmin ?
+    isAuthenticated &&  isAdmin ?
       <Layout>
         <Component {...props} />
       </Layout>
@@ -22,7 +22,7 @@ const UserRoute = (
 
 const mapStateToProps = state => ({
     isAuthenticated: getAuthenticationStatus(state),
-    isAdmin: getAdminStatus(state)
+    isAdmin: getAdminStatus(state),
 });
 
 const mapDispatchToProps = {
@@ -30,4 +30,4 @@ const mapDispatchToProps = {
   getAdminStatus
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRoute);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminRoute);

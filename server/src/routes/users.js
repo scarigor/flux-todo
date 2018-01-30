@@ -5,18 +5,18 @@ import mongoose from 'mongoose';
 const router = express.Router()
 
 router.post('/signup', (req, res) => {
-  const { email, password } = req.body.data
+  const { data } = req.body
 
   const user = new User({
     _id: mongoose.Types.ObjectId(),
-    email: email,
-    isAdmin: true
+    email: data.email,
+    isAdmin: false
   })
 
-  user.setPassword(password)
+  user.setPassword(data.password)
 
   user.save()
-  .then(user => res.status(200).json(user))
+  .then(user => res.status(200).json({ user: user.toAuthJSON() }))
   .catch(e => res.status(500).json({ error: e }))
 });
 
