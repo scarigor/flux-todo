@@ -5,7 +5,9 @@ import MainFooter from '../components/MainFooter/MainFooter'
 const MainLayout = props => (
   <div className='layout-main'>
     <MainHeader/>
-    {props.children}
+    <div className='layout-content'>
+      {props.children}
+    </div>
     <MainFooter/>
   </div>
 );

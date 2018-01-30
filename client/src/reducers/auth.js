@@ -1,4 +1,4 @@
-import { USER_SIGNUP, SIGNUP_SUCCEEDED, USER_LOGIN, LOGIN_SUCCEEDED, USER_LOGOUT } from '../constants';
+import { USER_SIGNUP, SIGNUP_SUCCEEDED, USER_LOGIN, LOGIN_SUCCEEDED, USER_LOGOUT, LOGOUT_SUCCEEDED } from '../constants';
 
 const initialState = {
   user: {},
@@ -9,6 +9,7 @@ const auth = (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_SIGNUP:
     case USER_LOGIN:
+    case USER_LOGOUT:
       return { ...state, isLoading: action.isLoading }
 
     case SIGNUP_SUCCEEDED:
@@ -25,8 +26,12 @@ const auth = (state = initialState, action = {}) => {
         isLoading: action.isLoading
       }
 
-    case USER_LOGOUT:
-      return {};
+    case LOGOUT_SUCCEEDED:
+      return {
+        ...state,
+        user: {},
+        isLoading: action.isLoading
+      }
 
     default:
       return state;

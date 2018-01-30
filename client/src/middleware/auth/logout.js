@@ -3,10 +3,10 @@ import { USER_LOGOUT, LOGOUT_SUCCEEDED, LOGOUT_FAILED } from '../../constants';
 
 function* logout(action) {
    try {
-      yield put({
-        type: LOGOUT_SUCCEEDED,
-        isLoading: !action.isLoading,
-      });
+    yield put({
+      type: LOGOUT_SUCCEEDED,
+      isLoading: !action.isLoading,
+    });
    } catch (e) {
       yield put({ type: LOGOUT_FAILED, message: e.message });
    }

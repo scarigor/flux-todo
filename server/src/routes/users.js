@@ -20,4 +20,9 @@ router.post('/signup', (req, res) => {
   .catch(e => res.status(500).json({ error: e }))
 });
 
+
+router.post('/logout', function(req, res){
+  req.logout();
+});
+
 export default router

@@ -12,7 +12,6 @@ function* login(action) {
         isLoading: !action.isLoading,
         user
       });
-      console.log("ASD")
 
       history.push('/dashboard')
    } catch (e) {

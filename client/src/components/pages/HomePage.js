@@ -1,6 +1,5 @@
 import React from 'react';
-import TodoApp from '../TodoApp/TodoApp'
 
-const HomePage = props => <TodoApp />
+const HomePage = props => <h1>Homepage</h1>
 
 export default HomePage
