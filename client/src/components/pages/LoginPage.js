@@ -7,7 +7,6 @@ class LoginPage extends Component {
   submit = data => {
     this.props.userLogin(data)
   }
-    // this.props.userLogin(data).then(() => this.props.history.push('/'))
 
   render = () => <LoginForm submit={this.submit}/>
 }

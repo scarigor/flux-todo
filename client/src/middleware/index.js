@@ -5,9 +5,9 @@ import addTodo from './todos/addTodo';
 import removeTodo from './todos/removeTodo';
 import toggleTodo from './todos/toggleTodo';
 
-import login from './user/login';
-import logout from './user/logout';
-import signup from './user/signup';
+import login from './auth/login';
+import logout from './auth/logout';
+import signup from './auth/signup';
 
 export default function* todosSaga() {
   yield all([

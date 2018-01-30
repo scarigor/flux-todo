@@ -19,7 +19,11 @@ const auth = (state = initialState, action = {}) => {
       }
 
     case LOGIN_SUCCEEDED:
-      return action.user;
+      return {
+        ...state,
+        user: action.user,
+        isLoading: action.isLoading
+      }
 
     case USER_LOGOUT:
       return {};
