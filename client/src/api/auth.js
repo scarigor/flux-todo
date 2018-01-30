@@ -9,5 +9,5 @@ export const logout = () =>
   axios.post(path + '/logout').then(res => res.data)
 
 export const signup = data => {
-  axios.post(path + '/signup', { data }).then(res => res.data)
+  axios.post('api/users/signup', { data }).then(res => res.data)
 }

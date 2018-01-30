@@ -1,7 +1,6 @@
 import express from 'express';
 import User from '../models/user';
 import mongoose from 'mongoose';
-import passport from 'passport';
 
 const router = express.Router()
 
@@ -10,7 +9,8 @@ router.post('/signup', (req, res) => {
 
   const user = new User({
     _id: mongoose.Types.ObjectId(),
-    email: email
+    email: email,
+    isAdmin: true
   })
 
   user.setPassword(password)
@@ -18,11 +18,6 @@ router.post('/signup', (req, res) => {
   user.save()
   .then(user => res.status(200).json(user))
   .catch(e => res.status(500).json({ error: e }))
-});
-
-
-router.post('/logout', function(req, res){
-  req.logout();
 });
 
 export default router
