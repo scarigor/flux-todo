@@ -1,19 +1,23 @@
 import express from 'express';
 import Todo from '../models/todo';
 import mongoose from 'mongoose';
+import authenticate from "../middlewares/authenticate";
 
 const router = express.Router()
+
+router.use(authenticate);
 
 // Create todo
 router.post('/', (req, res) => {
   const todo = new Todo({
     _id: mongoose.Types.ObjectId(),
+    userId: req.currentUser._id,
     text: req.body.text,
     done: false
   })
 
   todo.save()
-  .then(result => res.status(200).json(result))
+  .then(todo => res.status(200).json(todo))
   .catch(e => res.status(500).json({ error: e }))
 })
 
@@ -52,15 +56,9 @@ router.get('/:id', (req, res) => {
 })
 
 //Get all todos
-router.get('/', (req, res) => {
-  Todo.find()
-  .exec()
-  .then(todos => {
-    todos ? res.status(200).json(todos) :
-            res.status(404).json({ error: 'Invalid id!' })
-  })
-  .catch(e => res.status(500).json({ error: e }))
-})
+router.get("/", (req, res) => {
+  Todo.find({ userId: req.currentUser._id }).then(todos => res.json(todos));
+});
 
 // Remove all todos
 router.delete('/', (req, res) => {
